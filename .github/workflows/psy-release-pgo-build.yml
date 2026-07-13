@@ -11,7 +11,7 @@ jobs:
       sha: ${{ steps.generate-sha.outputs.sha }}
     steps:
     - id: generate-version
-      run: echo version=v2.2.1-B >> "$GITHUB_OUTPUT"
+      run: echo version=v2.3.0-B >> "$GITHUB_OUTPUT"
     - run: git clone --depth 1 https://github.com/psy-ex/svt-av1-psy.git --branch ${{ steps.generate-version.outputs.version }} --single-branch .
     - id: generate-tag
       run: echo tag=pgo-build-$(git log -1 "--date=format:%F" "--format=%ad-%h") >> "$GITHUB_OUTPUT"
