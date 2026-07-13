@@ -11,7 +11,7 @@ jobs:
       sha: ${{ steps.generate-sha.outputs.sha }}
     steps:
     - id: generate-version
-      run: echo version=v2.0.0-A >> "$GITHUB_OUTPUT"
+      run: echo version=v2.1.0-A >> "$GITHUB_OUTPUT"
     - run: git clone --depth 1 https://github.com/psy-ex/svt-av1-psy.git --branch ${{ steps.generate-version.outputs.version }} --single-branch .
     - id: generate-tag
       run: echo tag=pgo-build-$(git log -1 "--date=format:%F" "--format=%ad-%h") >> "$GITHUB_OUTPUT"
@@ -32,7 +32,7 @@ jobs:
         target_commitish: pgo-build-tags
         name: SVT-AV1-PSY ${{ needs.tag.outputs.version }}
         body: |
-          Release `${{ needs.tag.outputs.version }}` | Commit `${{ needs.tag.outputs.sha }}`  
+          Release `${{ needs.tag.outputs.version }}` | Commit `${{ needs.tag.outputs.sha }}` | Dolby Vision & HDR10+  
           Windows | x86-64 | LLVM Project Clang LLD | winthread | `icelake-server` + `znver5` | LTO PGO  
           Windows | x86-64 | LLVM Project Clang LLD | winthread | `znver2` | LTO PGO  
           Windows | x86-64 | LLVM Project Clang LLD | winthread | `x86-64-v3` + `znver2` | LTO PGO  
@@ -62,7 +62,6 @@ jobs:
 
     - uses: Akatmks/build-svt-av1@v1
       with:
-        dovi-hdr10plus: "false"
         cmakeflags: "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
 
     - id: detect-icelake-server-znver5
@@ -107,7 +106,6 @@ jobs:
 
     - uses: Akatmks/build-svt-av1@v1
       with:
-        dovi-hdr10plus: "false"
         cmakeflags: "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
 
     - run: ls BuildAction/armv8.7-a+crypto+sm4+sha3+fp16+sve+sve2+oryon-1/static/SvtAv1EncApp.exe
@@ -126,7 +124,6 @@ jobs:
 
     - uses: Akatmks/build-svt-av1@v1
       with:
-        dovi-hdr10plus: "false"
         cmakeflags: "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
 
     - id: detect-icelake-server-znver5
@@ -155,7 +152,6 @@ jobs:
     - run: cd BuildAction/x86-64-v3+znver2/static && tar cJf Linux_x86-64_x86-64-v3+znver2.tar.xz SvtAv1EncApp
     - uses: softprops/action-gh-release@v3
       with:
-        dovi-hdr10plus: "false"
         tag_name: ${{ needs.tag.outputs.tag }}
         files: BuildAction/x86-64-v3+znver2/static/Linux_x86-64_x86-64-v3+znver2.tar.xz
 
@@ -168,7 +164,6 @@ jobs:
 
     - uses: Akatmks/build-svt-av1@v1
       with:
-        dovi-hdr10plus: "false"
         cmakeflags: "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
 
     - run: ls BuildAction/armv8.5-a+simd+crypto+apple-m3/static/SvtAv1EncApp
@@ -187,7 +182,6 @@ jobs:
 
     - uses: Akatmks/build-svt-av1@v1
       with:
-        dovi-hdr10plus: "false"
         cmakeflags: "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
 
     - run: ls BuildAction/skylake/static/SvtAv1EncApp
