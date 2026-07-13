@@ -38,9 +38,9 @@ jobs:
       with:
         tag_name: ${{ needs.tag.outputs.tag }}
         target_commitish: pgo-build-tags
-        name: Mainline SVT-AV1 ${{ needs.tag.outputs.name }}
+        name: Mainline SVT-AV1 ${{ needs.tag.outputs.version }}
         body: |
-          Release ${{ needs.tag.outputs.name }} | Commit `${{ needs.tag.outputs.sha }}`  
+          Release ${{ needs.tag.outputs.version }} | Commit `${{ needs.tag.outputs.sha }}`  
           Windows | x86-64 | LLVM Project Clang LLD | winthread | `icelake-server` + `znver5` | LTO PGO  
           Windows | x86-64 | LLVM Project Clang LLD | winthread | `znver2` | LTO PGO  
           Windows | x86-64 | LLVM Project Clang LLD | winthread | `x86-64-v3` + `znver2` | LTO PGO  
