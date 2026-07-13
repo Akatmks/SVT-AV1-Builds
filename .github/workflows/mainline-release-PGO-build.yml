@@ -11,7 +11,7 @@ jobs:
       sha: ${{ steps.generate-sha.outputs.sha }}
     steps:
     - id: generate-version
-      run: echo version=v4.0.1 >> "$GITHUB_OUTPUT"
+      run: echo version=v4.1.0 >> "$GITHUB_OUTPUT"
     - run: git clone --depth 1 https://gitlab.com/AOMediaCodec/SVT-AV1.git --branch ${{ steps.generate-version.outputs.version }} --single-branch .
     - id: generate-tag
       run: echo tag=pgo-build-$(git log -1 "--date=format:%F" "--format=%ad-%h") >> "$GITHUB_OUTPUT"
