@@ -21,19 +21,10 @@ jobs:
   release:
     needs: tag
     runs-on: "ubuntu-latest"
-    outputs:
-      check-tag: ${{ steps.check-tag.outcome }}
     steps:
     - uses: actions/checkout@v7
-      with:
-        ref: "refs/heads/pgo-build-tags"
-    - id: check-tag
-      run: git ls-remote --exit-code origin --tags ${{ needs.tag.outputs.tag }}
+    - run: GH_TOKEN=${{ github.token }} gh release delete ${{ needs.tag.outputs.tag }} --cleanup-tag
       continue-on-error: true
-    - run: git config user.email Akatsumekusa@protonmail.com && git config user.name "Akatsumekusa"
-      if: ${{ steps.check-tag.outcome == 'failure' }}
-    - run: git commit --allow-empty -m ${{ needs.tag.outputs.tag }} && git push origin pgo-build-tags
-      if: ${{ steps.check-tag.outcome == 'failure' }}
     - uses: softprops/action-gh-release@v3
       with:
         tag_name: ${{ needs.tag.outputs.tag }}
@@ -56,12 +47,10 @@ jobs:
           Thanks to studies and contributions from afed, Emre, Ironclad, Itachi Uchiha, Khaoklong, Miss Ashenlight, Soda, SwareJonge, Trix, Yiss, and other people in the community for discovering the method to build the fastest binary.  
         prerelease: false
         make_latest: "false"
-      if: ${{ steps.check-tag.outcome == 'failure' }}
 
 
   build-windows-x86-64:
     needs: [tag, release]
-    if: ${{ needs.release.outputs.check-tag == 'failure' }}
     runs-on: "windows-latest"
     defaults:
       run:
@@ -106,7 +95,6 @@ jobs:
 
   build-windows-arm64:
     needs: [tag, release]
-    if: ${{ needs.release.outputs.check-tag == 'failure' }}
     runs-on: "windows-11-arm"
     defaults:
       run:
@@ -129,7 +117,6 @@ jobs:
 
   build-linux-x86-64:
     needs: [tag, release]
-    if: ${{ needs.release.outputs.check-tag == 'failure' }}
     runs-on: "ubuntu-latest"
     steps:
     - run: git clone https://gitlab.com/AOMediaCodec/SVT-AV1.git --branch ${{ needs.tag.outputs.version }} --single-branch .
@@ -170,7 +157,6 @@ jobs:
 
   build-macos-arm64:
     needs: [tag, release]
-    if: ${{ needs.release.outputs.check-tag == 'failure' }}
     runs-on: "macos-latest"
     steps:
     - run: git clone https://gitlab.com/AOMediaCodec/SVT-AV1.git --branch ${{ needs.tag.outputs.version }} --single-branch .
@@ -189,7 +175,6 @@ jobs:
 
   build-macos-x86-64:
     needs: [tag, release]
-    if: ${{ needs.release.outputs.check-tag == 'failure' }}
     runs-on: "macos-26-intel"
     steps:
     - run: git clone https://gitlab.com/AOMediaCodec/SVT-AV1.git --branch ${{ needs.tag.outputs.version }} --single-branch .
