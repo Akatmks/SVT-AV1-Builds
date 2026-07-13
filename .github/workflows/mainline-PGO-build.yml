@@ -2,6 +2,7 @@ name: mainline-pgo-build
 on:
   schedule:
   - cron: "8 8 * * FRI"
+  workflow_dispatch:
 # on: push # testing only
 
 jobs:
@@ -76,8 +77,11 @@ jobs:
         shell: msys2 {0}
     steps:
     - run: git clone https://gitlab.com/AOMediaCodec/SVT-AV1.git .
+      shell: pwsh
 
     - uses: Akatmks/build-svt-av1@v1
+      with:
+        dovi-hdr10plus: "false"
 
     - id: detect-icelake-server-znver5
       run: ls BuildAction/icelake-server+znver5/static/SvtAv1EncApp.exe
@@ -118,8 +122,11 @@ jobs:
         shell: msys2 {0}
     steps:
     - run: git clone https://gitlab.com/AOMediaCodec/SVT-AV1.git .
+      shell: pwsh
 
     - uses: Akatmks/build-svt-av1@v1
+      with:
+        dovi-hdr10plus: "false"
 
     - run: ls BuildAction/armv8.7-a+crypto+sm4+sha3+fp16+sve+sve2+oryon-1/static/SvtAv1EncApp.exe
     - run: cd BuildAction/armv8.7-a+crypto+sm4+sha3+fp16+sve+sve2+oryon-1/static && tar cJf Windows_arm64_armv8.7-a+crypto+sm4+sha3+fp16+sve+sve2+oryon-1.tar.xz SvtAv1EncApp.exe
@@ -137,6 +144,8 @@ jobs:
     - run: git clone https://gitlab.com/AOMediaCodec/SVT-AV1.git .
 
     - uses: Akatmks/build-svt-av1@v1
+      with:
+        dovi-hdr10plus: "false"
 
     - id: detect-icelake-server-znver5
       run: ls BuildAction/icelake-server+znver5/static/SvtAv1EncApp
@@ -176,6 +185,8 @@ jobs:
     - run: git clone https://gitlab.com/AOMediaCodec/SVT-AV1.git .
 
     - uses: Akatmks/build-svt-av1@v1
+      with:
+        dovi-hdr10plus: "false"
 
     - run: ls BuildAction/armv8.5-a+simd+crypto+apple-m3/static/SvtAv1EncApp
     - run: cd BuildAction/armv8.5-a+simd+crypto+apple-m3/static && tar cJf macOS_arm64_armv8.5-a+simd+crypto+apple-m3.tar.xz SvtAv1EncApp
@@ -193,6 +204,8 @@ jobs:
     - run: git clone https://gitlab.com/AOMediaCodec/SVT-AV1.git .
 
     - uses: Akatmks/build-svt-av1@v1
+      with:
+        dovi-hdr10plus: "false"
 
     - run: ls BuildAction/skylake/static/SvtAv1EncApp
     - run: cd BuildAction/skylake/static && tar cJf macOS_x86-64_skylake.tar.xz SvtAv1EncApp
