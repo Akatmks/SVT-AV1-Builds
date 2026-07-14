@@ -35,7 +35,7 @@ jobs:
         target_commitish: pgo-build-tags
         name: SVT-AV1-Essential ${{ needs.tag.outputs.version }}
         body: |
-          Release `${{ needs.tag.outputs.version }}` | Commit `${{ needs.tag.outputs.sha }}` | FFMS2  
+          Release `${{ needs.tag.outputs.version }}` | Commit `${{ needs.tag.outputs.sha }}` | WEBM | FFMS2  
           Windows | x86-64 | LLVM Project Clang LLD | winthread | `icelake-server` + `znver5` | LTO PGO  
           Windows | x86-64 | LLVM Project Clang LLD | winthread | `znver2` | LTO PGO  
           Windows | x86-64 | LLVM Project Clang LLD | winthread | `x86-64-v3` + `znver2` | LTO PGO  
@@ -67,6 +67,7 @@ jobs:
       with:
         dovi-hdr10plus: "false"
         ffms2: "true"
+        cmakeflags: "-DUSE_WEBM_IO=ON"
 
     - id: detect-icelake-server-znver5
       run: ls BuildAction/icelake-server+znver5/static/SvtAv1EncApp.exe
@@ -112,6 +113,7 @@ jobs:
       with:
         dovi-hdr10plus: "false"
         ffms2: "true"
+        cmakeflags: "-DUSE_WEBM_IO=ON"
 
     - run: ls BuildAction/armv8.7-a+crypto+sm4+sha3+fp16+sve+sve2+oryon-1/static/SvtAv1EncApp.exe
     - run: cd BuildAction/armv8.7-a+crypto+sm4+sha3+fp16+sve+sve2+oryon-1/static && tar cJf Windows_arm64_armv8.7-a+crypto+sm4+sha3+fp16+sve+sve2+oryon-1.tar.xz SvtAv1EncApp.exe
@@ -131,6 +133,7 @@ jobs:
       with:
         dovi-hdr10plus: "false"
         ffms2: "true"
+        cmakeflags: "-DUSE_WEBM_IO=ON"
 
     - id: detect-icelake-server-znver5
       run: ls BuildAction/icelake-server+znver5/static/SvtAv1EncApp
@@ -172,6 +175,7 @@ jobs:
       with:
         dovi-hdr10plus: "false"
         ffms2: "true"
+        cmakeflags: "-DUSE_WEBM_IO=ON"
 
     - run: ls BuildAction/armv8.5-a+simd+crypto+apple-m3/static/SvtAv1EncApp
     - run: cd BuildAction/armv8.5-a+simd+crypto+apple-m3/static && tar cJf macOS_arm64_armv8.5-a+simd+crypto+apple-m3.tar.xz SvtAv1EncApp
@@ -191,6 +195,7 @@ jobs:
       with:
         dovi-hdr10plus: "false"
         ffms2: "true"
+        cmakeflags: "-DUSE_WEBM_IO=ON"
 
     - run: ls BuildAction/skylake/static/SvtAv1EncApp
     - run: cd BuildAction/skylake/static && tar cJf macOS_x86-64_skylake.tar.xz SvtAv1EncApp
