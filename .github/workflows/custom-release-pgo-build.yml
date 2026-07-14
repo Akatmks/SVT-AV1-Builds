@@ -12,9 +12,9 @@ jobs:
       sha: ${{ steps.generate-sha.outputs.sha }}
     steps:
     - id: generate-repo
-      run: echo repo=https://github.com/juliobbv-p/svt-av1-hdr.git >> "$GITHUB_OUTPUT"
+      run: echo repo=https://github.com/psy-ex/svt-av1-psy.git >> "$GITHUB_OUTPUT"
     - id: generate-version
-      run: echo version=v4.0.1 >> "$GITHUB_OUTPUT"
+      run: echo version=v3.0.2 >> "$GITHUB_OUTPUT"
     - run: git clone --depth 1 ${{ steps.generate-repo.outputs.repo }} --branch ${{ steps.generate-version.outputs.version }} --single-branch .
     - id: generate-tag
       run: echo tag=pgo-build-$(git log -1 "--date=format:%F" "--format=%ad-%h") >> "$GITHUB_OUTPUT"
@@ -33,7 +33,7 @@ jobs:
       with:
         tag_name: ${{ needs.tag.outputs.tag }}
         target_commitish: pgo-build-tags
-        name: SVT-AV1-HDR ${{ needs.tag.outputs.version }}
+        name: SVT-AV1-PSY ${{ needs.tag.outputs.version }}
         body: |
           Release `${{ needs.tag.outputs.version }}` | Commit `${{ needs.tag.outputs.sha }}` | Dolby Vision & HDR10+  
           Windows | x86-64 | LLVM Project Clang LLD | winthread | `icelake-server` + `znver5` | LTO PGO  
