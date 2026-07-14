@@ -1,6 +1,6 @@
 name: custom-release-pgo-build
-# on: workflow_dispatch
-on: push
+on: workflow_dispatch
+# on: push
 
 jobs:
   tag:
@@ -12,9 +12,9 @@ jobs:
       sha: ${{ steps.generate-sha.outputs.sha }}
     steps:
     - id: generate-repo
-      run: echo repo=https://github.com/nekotrix/SVT-AV1-Essential.git >> "$GITHUB_OUTPUT"
+      run: echo repo=https://github.com/psy-ex/svt-av1-psy.git >> "$GITHUB_OUTPUT"
     - id: generate-version
-      run: echo version=v3.1.2-Essential >> "$GITHUB_OUTPUT"
+      run: echo version=v2.3.0-B >> "$GITHUB_OUTPUT"
     - run: git clone --depth 1 ${{ steps.generate-repo.outputs.repo }} --branch ${{ steps.generate-version.outputs.version }} --single-branch .
     - id: generate-tag
       run: echo tag=pgo-build-$(git log -1 "--date=format:%F" "--format=%ad-%h") >> "$GITHUB_OUTPUT"
@@ -33,7 +33,7 @@ jobs:
       with:
         tag_name: ${{ needs.tag.outputs.tag }}
         target_commitish: pgo-build-tags
-        name: SVT-AV1-Essential ${{ needs.tag.outputs.version }}
+        name: SVT-AV1-PSY ${{ needs.tag.outputs.version }}
         body: |
           Release `${{ needs.tag.outputs.version }}` | Commit `${{ needs.tag.outputs.sha }}` | WEBM | FFMS2  
           Windows | x86-64 | LLVM Project Clang LLD | winthread | `icelake-server` + `znver5` | LTO PGO  
@@ -64,8 +64,6 @@ jobs:
       shell: pwsh
 
     - uses: Akatmks/build-svt-av1@v1
-      with:
-        dovi-hdr10plus: "false"
 
     - id: detect-icelake-server-znver5
       run: ls BuildAction/icelake-server+znver5/static/SvtAv1EncApp.exe
@@ -108,8 +106,6 @@ jobs:
       shell: pwsh
 
     - uses: Akatmks/build-svt-av1@v1
-      with:
-        dovi-hdr10plus: "false"
 
     - run: ls BuildAction/armv8.7-a+crypto+sm4+sha3+fp16+sve+sve2+oryon-1/static/SvtAv1EncApp.exe
     - run: cd BuildAction/armv8.7-a+crypto+sm4+sha3+fp16+sve+sve2+oryon-1/static && tar cJf Windows_arm64_armv8.7-a+crypto+sm4+sha3+fp16+sve+sve2+oryon-1.tar.xz SvtAv1EncApp.exe
@@ -126,8 +122,6 @@ jobs:
     - run: git clone ${{ needs.tag.outputs.repo }} --branch ${{ needs.tag.outputs.version }} --single-branch .
 
     - uses: Akatmks/build-svt-av1@v1
-      with:
-        dovi-hdr10plus: "false"
 
     - id: detect-icelake-server-znver5
       run: ls BuildAction/icelake-server+znver5/static/SvtAv1EncApp
@@ -166,8 +160,6 @@ jobs:
     - run: git clone ${{ needs.tag.outputs.repo }} --branch ${{ needs.tag.outputs.version }} --single-branch .
 
     - uses: Akatmks/build-svt-av1@v1
-      with:
-        dovi-hdr10plus: "false"
 
     - run: ls BuildAction/armv8.5-a+simd+crypto+apple-m3/static/SvtAv1EncApp
     - run: cd BuildAction/armv8.5-a+simd+crypto+apple-m3/static && tar cJf macOS_arm64_armv8.5-a+simd+crypto+apple-m3.tar.xz SvtAv1EncApp
@@ -184,8 +176,6 @@ jobs:
     - run: git clone ${{ needs.tag.outputs.repo }} --branch ${{ needs.tag.outputs.version }} --single-branch .
 
     - uses: Akatmks/build-svt-av1@v1
-      with:
-        dovi-hdr10plus: "false"
 
     - run: ls BuildAction/skylake/static/SvtAv1EncApp
     - run: cd BuildAction/skylake/static && tar cJf macOS_x86-64_skylake.tar.xz SvtAv1EncApp
