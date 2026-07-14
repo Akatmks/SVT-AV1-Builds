@@ -1,6 +1,6 @@
 name: custom-release-pgo-build
-on: workflow_dispatch
-# on: push
+# on: workflow_dispatch
+on: push
 
 jobs:
   tag:
