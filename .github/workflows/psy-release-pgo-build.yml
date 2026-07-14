@@ -11,8 +11,8 @@ jobs:
       sha: ${{ steps.generate-sha.outputs.sha }}
     steps:
     - id: generate-version
-      run: echo version=v3.0.2 >> "$GITHUB_OUTPUT"
-    - run: git clone --depth 1 https://github.com/psy-ex/svt-av1-psy.git --branch ${{ steps.generate-version.outputs.version }} --single-branch .
+      run: echo version=v3.0.2-B >> "$GITHUB_OUTPUT"
+    - run: git clone --depth 1 https://github.com/blueswordm/svt-av1-psyex.git --branch ${{ steps.generate-version.outputs.version }} --single-branch .
     - id: generate-tag
       run: echo tag=pgo-build-$(git log -1 "--date=format:%F" "--format=%ad-%h") >> "$GITHUB_OUTPUT"
     - id: generate-sha
@@ -30,7 +30,7 @@ jobs:
       with:
         tag_name: ${{ needs.tag.outputs.tag }}
         target_commitish: pgo-build-tags
-        name: SVT-AV1-PSY ${{ needs.tag.outputs.version }}
+        name: SVT-AV1-PSYEX ${{ needs.tag.outputs.version }}
         body: |
           Release `${{ needs.tag.outputs.version }}` | Commit `${{ needs.tag.outputs.sha }}` | Dolby Vision & HDR10+  
           Windows | x86-64 | LLVM Project Clang LLD | winthread | `icelake-server` + `znver5` | LTO PGO  
@@ -57,12 +57,10 @@ jobs:
       run:
         shell: msys2 {0}
     steps:
-    - run: git clone https://github.com/psy-ex/svt-av1-psy.git --branch ${{ needs.tag.outputs.version }} --single-branch .
+    - run: git clone https://github.com/blueswordm/svt-av1-psyex.git --branch ${{ needs.tag.outputs.version }} --single-branch .
       shell: pwsh
 
     - uses: Akatmks/build-svt-av1@v1
-      with:
-        cmakeflags: "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
 
     - id: detect-icelake-server-znver5
       run: ls BuildAction/icelake-server+znver5/static/SvtAv1EncApp.exe
@@ -101,12 +99,10 @@ jobs:
       run:
         shell: msys2 {0}
     steps:
-    - run: git clone https://github.com/psy-ex/svt-av1-psy.git --branch ${{ needs.tag.outputs.version }} --single-branch .
+    - run: git clone https://github.com/blueswordm/svt-av1-psyex.git --branch ${{ needs.tag.outputs.version }} --single-branch .
       shell: pwsh
 
     - uses: Akatmks/build-svt-av1@v1
-      with:
-        cmakeflags: "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
 
     - run: ls BuildAction/armv8.7-a+crypto+sm4+sha3+fp16+sve+sve2+oryon-1/static/SvtAv1EncApp.exe
     - run: cd BuildAction/armv8.7-a+crypto+sm4+sha3+fp16+sve+sve2+oryon-1/static && tar cJf Windows_arm64_armv8.7-a+crypto+sm4+sha3+fp16+sve+sve2+oryon-1.tar.xz SvtAv1EncApp.exe
@@ -120,11 +116,9 @@ jobs:
     needs: [tag, release]
     runs-on: "ubuntu-latest"
     steps:
-    - run: git clone https://github.com/psy-ex/svt-av1-psy.git --branch ${{ needs.tag.outputs.version }} --single-branch .
+    - run: git clone https://github.com/blueswordm/svt-av1-psyex.git --branch ${{ needs.tag.outputs.version }} --single-branch .
 
     - uses: Akatmks/build-svt-av1@v1
-      with:
-        cmakeflags: "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
 
     - id: detect-icelake-server-znver5
       run: ls BuildAction/icelake-server+znver5/static/SvtAv1EncApp
@@ -160,11 +154,9 @@ jobs:
     needs: [tag, release]
     runs-on: "macos-latest"
     steps:
-    - run: git clone https://github.com/psy-ex/svt-av1-psy.git --branch ${{ needs.tag.outputs.version }} --single-branch .
+    - run: git clone https://github.com/blueswordm/svt-av1-psyex.git --branch ${{ needs.tag.outputs.version }} --single-branch .
 
     - uses: Akatmks/build-svt-av1@v1
-      with:
-        cmakeflags: "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
 
     - run: ls BuildAction/armv8.5-a+simd+crypto+apple-m3/static/SvtAv1EncApp
     - run: cd BuildAction/armv8.5-a+simd+crypto+apple-m3/static && tar cJf macOS_arm64_armv8.5-a+simd+crypto+apple-m3.tar.xz SvtAv1EncApp
@@ -178,11 +170,9 @@ jobs:
     needs: [tag, release]
     runs-on: "macos-26-intel"
     steps:
-    - run: git clone https://github.com/psy-ex/svt-av1-psy.git --branch ${{ needs.tag.outputs.version }} --single-branch .
+    - run: git clone https://github.com/blueswordm/svt-av1-psyex.git --branch ${{ needs.tag.outputs.version }} --single-branch .
 
     - uses: Akatmks/build-svt-av1@v1
-      with:
-        cmakeflags: "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
 
     - run: ls BuildAction/skylake/static/SvtAv1EncApp
     - run: cd BuildAction/skylake/static && tar cJf macOS_x86-64_skylake.tar.xz SvtAv1EncApp
