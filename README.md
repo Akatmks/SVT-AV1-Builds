@@ -26,7 +26,7 @@ All of these forks focus on improving visual quality you can see with your eyes,
 
 Currently, this repository provides builds for latest SVT-AV1-Essential, builds for mainline SVT-AV1, and archival builds for older versions.  
 
-* **SVT-AV1-Essential** is a variant of SVT-AV1:  
+* **SVT-AV1-Essential** is a variant of SVT-AV1.  
   * README: https://github.com/nekotrix/SVT-AV1-Essential#svt-av1-essential  
   * Latest builds: https://github.com/Akatmks/SVT-AV1-Builds/releases?q=SVT-AV1-Essential&expanded=true  
 * Mainline **SVT-AV1**:  
