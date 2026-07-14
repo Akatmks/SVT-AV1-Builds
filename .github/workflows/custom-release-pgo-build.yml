@@ -14,7 +14,7 @@ jobs:
     - id: generate-repo
       run: echo repo=https://github.com/juliobbv-p/svt-av1-hdr.git >> "$GITHUB_OUTPUT"
     - id: generate-version
-      run: echo version=v3.1.3 >> "$GITHUB_OUTPUT"
+      run: echo version=v4.0.1 >> "$GITHUB_OUTPUT"
     - run: git clone --depth 1 ${{ steps.generate-repo.outputs.repo }} --branch ${{ steps.generate-version.outputs.version }} --single-branch .
     - id: generate-tag
       run: echo tag=pgo-build-$(git log -1 "--date=format:%F" "--format=%ad-%h") >> "$GITHUB_OUTPUT"
