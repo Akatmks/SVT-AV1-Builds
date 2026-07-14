@@ -12,7 +12,7 @@ jobs:
       sha: ${{ steps.generate-sha.outputs.sha }}
     steps:
     - id: generate-repo
-      run: echo repo=https://github.com/juliobbv-p/svt-av1-hdr.git >> "$GITHUB_OUTPUT"
+      run: echo repo=https://github.com/psy-ex/svt-av1-psy.git >> "$GITHUB_OUTPUT"
     - id: generate-version
       run: echo version=v3.0.2 >> "$GITHUB_OUTPUT"
     - run: git clone --depth 1 ${{ steps.generate-repo.outputs.repo }} --branch ${{ steps.generate-version.outputs.version }} --single-branch .
