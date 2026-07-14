@@ -35,5 +35,5 @@ Currently, this repository provides builds for latest SVT-AV1-Essential, builds 
   * Semimonthly git HEAD builds: https://github.com/Akatmks/SVT-AV1-Builds/releases?q=Mainline+SVT-AV1&expanded=true  
 * Archival builds:  
   * We provide archival builds for mainline SVT-AV1 since v1.8.0, original SVT-AV1-PSY, SVT-AV1-HDR, SVT-AV1-PSYEX, and SVT-AV1-Essential. Using this new building script, we provide a build for every minor version. As an example, we have a SVT-AV1-HDR v3.1.3 build, then before that it is SVT-AV1-HDR v3.0.2.  
-    However, we've been using this repository to distribute manual PGO builds before the implementation of the new building script. You will be able to find a lot of older builds here as well, especially some 5fish/SVT-AV1-PSY and SVT-AV1-HDR builds.  
+    We've also been using this repository to distribute manual PGO builds prior to the implementation of the new building script. You will be able to find a lot of older builds here as well, especially builds for 5fish/SVT-AV1-PSY and SVT-AV1-HDR.  
   * Search for the variant you're looking for in our GitHub Releases page: https://github.com/Akatmks/SVT-AV1-Builds/releases  
