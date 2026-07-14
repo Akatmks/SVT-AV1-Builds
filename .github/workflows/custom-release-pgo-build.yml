@@ -1,4 +1,4 @@
-name: psy-release-pgo-build
+name: custom-release-pgo-build
 # on: workflow_dispatch
 on: push
 
@@ -6,13 +6,16 @@ jobs:
   tag:
     runs-on: "ubuntu-latest"
     outputs:
+      repo: ${{ steps.generate-repo.outputs.repo }}
       version: ${{ steps.generate-version.outputs.version }}
       tag: ${{ steps.generate-tag.outputs.tag }}
       sha: ${{ steps.generate-sha.outputs.sha }}
     steps:
+    - id: generate-repo
+      run: echo repo=https://github.com/juliobbv-p/svt-av1-hdr.git >> "$GITHUB_OUTPUT"
     - id: generate-version
-      run: echo version=v3.0.2-B >> "$GITHUB_OUTPUT"
-    - run: git clone --depth 1 https://github.com/blueswordm/svt-av1-psyex.git --branch ${{ steps.generate-version.outputs.version }} --single-branch .
+      run: echo version=v3.0.2 >> "$GITHUB_OUTPUT"
+    - run: git clone --depth 1 ${{ steps.generate-repo.outputs.repo }} --branch ${{ steps.generate-version.outputs.version }} --single-branch .
     - id: generate-tag
       run: echo tag=pgo-build-$(git log -1 "--date=format:%F" "--format=%ad-%h") >> "$GITHUB_OUTPUT"
     - id: generate-sha
@@ -30,7 +33,7 @@ jobs:
       with:
         tag_name: ${{ needs.tag.outputs.tag }}
         target_commitish: pgo-build-tags
-        name: SVT-AV1-PSYEX ${{ needs.tag.outputs.version }}
+        name: SVT-AV1-HDR ${{ needs.tag.outputs.version }}
         body: |
           Release `${{ needs.tag.outputs.version }}` | Commit `${{ needs.tag.outputs.sha }}` | Dolby Vision & HDR10+  
           Windows | x86-64 | LLVM Project Clang LLD | winthread | `icelake-server` + `znver5` | LTO PGO  
@@ -57,7 +60,7 @@ jobs:
       run:
         shell: msys2 {0}
     steps:
-    - run: git clone https://github.com/blueswordm/svt-av1-psyex.git --branch ${{ needs.tag.outputs.version }} --single-branch .
+    - run: git clone ${{ needs.tag.outputs.repo }} --branch ${{ needs.tag.outputs.version }} --single-branch .
       shell: pwsh
 
     - uses: Akatmks/build-svt-av1@v1
@@ -99,7 +102,7 @@ jobs:
       run:
         shell: msys2 {0}
     steps:
-    - run: git clone https://github.com/blueswordm/svt-av1-psyex.git --branch ${{ needs.tag.outputs.version }} --single-branch .
+    - run: git clone ${{ needs.tag.outputs.repo }} --branch ${{ needs.tag.outputs.version }} --single-branch .
       shell: pwsh
 
     - uses: Akatmks/build-svt-av1@v1
@@ -116,7 +119,7 @@ jobs:
     needs: [tag, release]
     runs-on: "ubuntu-latest"
     steps:
-    - run: git clone https://github.com/blueswordm/svt-av1-psyex.git --branch ${{ needs.tag.outputs.version }} --single-branch .
+    - run: git clone ${{ needs.tag.outputs.repo }} --branch ${{ needs.tag.outputs.version }} --single-branch .
 
     - uses: Akatmks/build-svt-av1@v1
 
@@ -154,7 +157,7 @@ jobs:
     needs: [tag, release]
     runs-on: "macos-latest"
     steps:
-    - run: git clone https://github.com/blueswordm/svt-av1-psyex.git --branch ${{ needs.tag.outputs.version }} --single-branch .
+    - run: git clone ${{ needs.tag.outputs.repo }} --branch ${{ needs.tag.outputs.version }} --single-branch .
 
     - uses: Akatmks/build-svt-av1@v1
 
@@ -170,7 +173,7 @@ jobs:
     needs: [tag, release]
     runs-on: "macos-26-intel"
     steps:
-    - run: git clone https://github.com/blueswordm/svt-av1-psyex.git --branch ${{ needs.tag.outputs.version }} --single-branch .
+    - run: git clone ${{ needs.tag.outputs.repo }} --branch ${{ needs.tag.outputs.version }} --single-branch .
 
     - uses: Akatmks/build-svt-av1@v1
 
