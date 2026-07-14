@@ -35,7 +35,7 @@ jobs:
         target_commitish: pgo-build-tags
         name: SVT-AV1-Essential ${{ needs.tag.outputs.version }}
         body: |
-          Release `${{ needs.tag.outputs.version }}` | Commit `${{ needs.tag.outputs.sha }}` | Dolby Vision & HDR10+ | FFMS2  
+          Release `${{ needs.tag.outputs.version }}` | Commit `${{ needs.tag.outputs.sha }}` | FFMS2  
           Windows | x86-64 | LLVM Project Clang LLD | winthread | `icelake-server` + `znver5` | LTO PGO  
           Windows | x86-64 | LLVM Project Clang LLD | winthread | `znver2` | LTO PGO  
           Windows | x86-64 | LLVM Project Clang LLD | winthread | `x86-64-v3` + `znver2` | LTO PGO  
@@ -65,6 +65,7 @@ jobs:
 
     - uses: Akatmks/build-svt-av1@v1
       with:
+        dovi-hdr10plus: "false"
         ffms2: "true"
 
     - id: detect-icelake-server-znver5
@@ -109,6 +110,7 @@ jobs:
 
     - uses: Akatmks/build-svt-av1@v1
       with:
+        dovi-hdr10plus: "false"
         ffms2: "true"
 
     - run: ls BuildAction/armv8.7-a+crypto+sm4+sha3+fp16+sve+sve2+oryon-1/static/SvtAv1EncApp.exe
@@ -127,6 +129,7 @@ jobs:
 
     - uses: Akatmks/build-svt-av1@v1
       with:
+        dovi-hdr10plus: "false"
         ffms2: "true"
 
     - id: detect-icelake-server-znver5
@@ -167,6 +170,7 @@ jobs:
 
     - uses: Akatmks/build-svt-av1@v1
       with:
+        dovi-hdr10plus: "false"
         ffms2: "true"
 
     - run: ls BuildAction/armv8.5-a+simd+crypto+apple-m3/static/SvtAv1EncApp
@@ -185,6 +189,7 @@ jobs:
 
     - uses: Akatmks/build-svt-av1@v1
       with:
+        dovi-hdr10plus: "false"
         ffms2: "true"
 
     - run: ls BuildAction/skylake/static/SvtAv1EncApp
