@@ -14,7 +14,7 @@ jobs:
     - id: generate-repo
       run: echo repo=https://github.com/nekotrix/SVT-AV1-Essential.git >> "$GITHUB_OUTPUT"
     - id: generate-version
-      run: echo version=v4.0.1-Essential >> "$GITHUB_OUTPUT"
+      run: echo version=v3.1.2-Essential >> "$GITHUB_OUTPUT"
     - run: git clone --depth 1 ${{ steps.generate-repo.outputs.repo }} --branch ${{ steps.generate-version.outputs.version }} --single-branch .
     - id: generate-tag
       run: echo tag=pgo-build-$(git log -1 "--date=format:%F" "--format=%ad-%h") >> "$GITHUB_OUTPUT"
@@ -66,8 +66,6 @@ jobs:
     - uses: Akatmks/build-svt-av1@v1
       with:
         dovi-hdr10plus: "false"
-        ffms2: "true"
-        cmakeflags: "-DUSE_WEBM_IO=ON"
 
     - id: detect-icelake-server-znver5
       run: ls BuildAction/icelake-server+znver5/static/SvtAv1EncApp.exe
@@ -112,8 +110,6 @@ jobs:
     - uses: Akatmks/build-svt-av1@v1
       with:
         dovi-hdr10plus: "false"
-        ffms2: "true"
-        cmakeflags: "-DUSE_WEBM_IO=ON"
 
     - run: ls BuildAction/armv8.7-a+crypto+sm4+sha3+fp16+sve+sve2+oryon-1/static/SvtAv1EncApp.exe
     - run: cd BuildAction/armv8.7-a+crypto+sm4+sha3+fp16+sve+sve2+oryon-1/static && tar cJf Windows_arm64_armv8.7-a+crypto+sm4+sha3+fp16+sve+sve2+oryon-1.tar.xz SvtAv1EncApp.exe
@@ -132,8 +128,6 @@ jobs:
     - uses: Akatmks/build-svt-av1@v1
       with:
         dovi-hdr10plus: "false"
-        ffms2: "true"
-        cmakeflags: "-DUSE_WEBM_IO=ON"
 
     - id: detect-icelake-server-znver5
       run: ls BuildAction/icelake-server+znver5/static/SvtAv1EncApp
@@ -174,8 +168,6 @@ jobs:
     - uses: Akatmks/build-svt-av1@v1
       with:
         dovi-hdr10plus: "false"
-        ffms2: "true"
-        cmakeflags: "-DUSE_WEBM_IO=ON"
 
     - run: ls BuildAction/armv8.5-a+simd+crypto+apple-m3/static/SvtAv1EncApp
     - run: cd BuildAction/armv8.5-a+simd+crypto+apple-m3/static && tar cJf macOS_arm64_armv8.5-a+simd+crypto+apple-m3.tar.xz SvtAv1EncApp
@@ -194,8 +186,6 @@ jobs:
     - uses: Akatmks/build-svt-av1@v1
       with:
         dovi-hdr10plus: "false"
-        ffms2: "true"
-        cmakeflags: "-DUSE_WEBM_IO=ON"
 
     - run: ls BuildAction/skylake/static/SvtAv1EncApp
     - run: cd BuildAction/skylake/static && tar cJf macOS_x86-64_skylake.tar.xz SvtAv1EncApp
