@@ -14,7 +14,7 @@ jobs:
     - id: generate-repo
       run: echo repo=https://github.com/nekotrix/SVT-AV1-Essential.git >> "$GITHUB_OUTPUT"
     - id: generate-version
-      run: echo version=v3.1.2-Essential >> "$GITHUB_OUTPUT"
+      run: echo version=v4.0.1-Essential >> "$GITHUB_OUTPUT"
     - run: git clone --depth 1 ${{ steps.generate-repo.outputs.repo }} --branch ${{ steps.generate-version.outputs.version }} --single-branch .
     - id: generate-tag
       run: echo tag=pgo-build-$(git log -1 "--date=format:%F" "--format=%ad-%h") >> "$GITHUB_OUTPUT"
