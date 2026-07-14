@@ -46,7 +46,7 @@ jobs:
           macOS | arm64 | LLVM Project Clang LLD | `armv8.5-a+simd+crypto` + `apple-m3` | LTO PGO  
           macOS | x86-64 | LLVM Project Clang LLD | `skylake` | LTO PGO  
 
-          These builds are provided for archival purpose. Check our [README](../../../#svt-av1-builds) for latest recommendations.  
+          These builds are provided for archival purpose. Check our [README](../../#svt-av1-builds) for latest recommendations.  
 
           Thanks to studies and contributions from afed, Emre, Ironclad, Itachi Uchiha, Khaoklong, Miss Ashenlight, Soda, SwareJonge, Trix, Yiss, and other people in the community for discovering the method to build the fastest binary.  
         prerelease: false

@@ -60,7 +60,7 @@ jobs:
           Some versions might not be available if the GitHub Actions runners we get this time don't support the respective features.  
 
           We provide the binaries here for people that need it, but we do NOT recommend using mainline SVT-AV1 for encodes because mainline has been focused solely on ancient metrics like PSNR while completely disregarding visual quality.  
-          Check the [README](../../../#svt-av1-builds) for our recommendations instead.  
+          Check the [README](../../#svt-av1-builds) for our recommendations instead.  
 
           Thanks to studies and contributions from afed, Emre, Ironclad, Itachi Uchiha, Khaoklong, Miss Ashenlight, Soda, SwareJonge, Trix, Yiss, and other people in the community for discovering the method to build the fastest binary.  
         prerelease: false
