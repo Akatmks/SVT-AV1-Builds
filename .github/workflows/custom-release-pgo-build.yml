@@ -44,7 +44,6 @@ jobs:
           Linux | x86-64 | LLVM Project Clang LLD | `znver2` | LTO PGO  
           Linux | x86-64 | LLVM Project Clang LLD | `x86-64-v3` + `znver2` | LTO PGO  
           macOS | arm64 | LLVM Project Clang LLD | `armv8.5-a+simd+crypto` + `apple-m3` | LTO PGO  
-          macOS | x86-64 | LLVM Project Clang LLD | `skylake` | LTO PGO  
 
           These builds are provided for archival purpose. Check our [README](../../#svt-av1-builds) for latest recommendations.  
 
@@ -63,7 +62,7 @@ jobs:
     - run: git clone ${{ needs.tag.outputs.repo }} --branch ${{ needs.tag.outputs.version }} --single-branch .
       shell: pwsh
 
-    - uses: Akatmks/build-svt-av1@v1
+    - uses: Akatmks/build-svt-av1@v2
 
     - id: detect-icelake-server-znver5
       run: ls BuildAction/icelake-server+znver5/static/SvtAv1EncApp.exe
@@ -105,7 +104,7 @@ jobs:
     - run: git clone ${{ needs.tag.outputs.repo }} --branch ${{ needs.tag.outputs.version }} --single-branch .
       shell: pwsh
 
-    - uses: Akatmks/build-svt-av1@v1
+    - uses: Akatmks/build-svt-av1@v2
 
     - run: ls BuildAction/armv8.7-a+crypto+sm4+sha3+fp16+sve+sve2+oryon-1/static/SvtAv1EncApp.exe
     - run: cd BuildAction/armv8.7-a+crypto+sm4+sha3+fp16+sve+sve2+oryon-1/static && tar cJf Windows_arm64_armv8.7-a+crypto+sm4+sha3+fp16+sve+sve2+oryon-1.tar.xz SvtAv1EncApp.exe
@@ -121,7 +120,7 @@ jobs:
     steps:
     - run: git clone ${{ needs.tag.outputs.repo }} --branch ${{ needs.tag.outputs.version }} --single-branch .
 
-    - uses: Akatmks/build-svt-av1@v1
+    - uses: Akatmks/build-svt-av1@v2
 
     - id: detect-icelake-server-znver5
       run: ls BuildAction/icelake-server+znver5/static/SvtAv1EncApp
@@ -159,7 +158,7 @@ jobs:
     steps:
     - run: git clone ${{ needs.tag.outputs.repo }} --branch ${{ needs.tag.outputs.version }} --single-branch .
 
-    - uses: Akatmks/build-svt-av1@v1
+    - uses: Akatmks/build-svt-av1@v2
 
     - run: ls BuildAction/armv8.5-a+simd+crypto+apple-m3/static/SvtAv1EncApp
     - run: cd BuildAction/armv8.5-a+simd+crypto+apple-m3/static && tar cJf macOS_arm64_armv8.5-a+simd+crypto+apple-m3.tar.xz SvtAv1EncApp
@@ -167,19 +166,3 @@ jobs:
       with:
         tag_name: ${{ needs.tag.outputs.tag }}
         files: BuildAction/armv8.5-a+simd+crypto+apple-m3/static/macOS_arm64_armv8.5-a+simd+crypto+apple-m3.tar.xz
-
-
-  build-macos-x86-64:
-    needs: [tag, release]
-    runs-on: "macos-26-intel"
-    steps:
-    - run: git clone ${{ needs.tag.outputs.repo }} --branch ${{ needs.tag.outputs.version }} --single-branch .
-
-    - uses: Akatmks/build-svt-av1@v1
-
-    - run: ls BuildAction/skylake/static/SvtAv1EncApp
-    - run: cd BuildAction/skylake/static && tar cJf macOS_x86-64_skylake.tar.xz SvtAv1EncApp
-    - uses: softprops/action-gh-release@v3
-      with:
-        tag_name: ${{ needs.tag.outputs.tag }}
-        files: BuildAction/skylake/static/macOS_x86-64_skylake.tar.xz

@@ -44,7 +44,6 @@ jobs:
           Linux | x86-64 | LLVM Project Clang LLD | `znver2` | LTO PGO  
           Linux | x86-64 | LLVM Project Clang LLD | `x86-64-v3` + `znver2` | LTO PGO  
           macOS | arm64 | LLVM Project Clang LLD | `armv8.5-a+simd+crypto` + `apple-m3` | LTO PGO  
-          macOS | x86-64 | LLVM Project Clang LLD | `skylake` | LTO PGO  
 
           On Windows, FFMS2 is built into the binary and is always available.  
           On Linux and macOS, if you want to use FFMS2, in addition to downloading the FFMS2 version, you need to install `ffms2` from your system package manager. For people that only uses pipe input, you can grab the non-FFMS2 version.  
@@ -68,7 +67,7 @@ jobs:
     - run: git clone ${{ needs.tag.outputs.repo }} --branch ${{ needs.tag.outputs.version }} --single-branch .
       shell: pwsh
 
-    - uses: Akatmks/build-svt-av1@v1
+    - uses: Akatmks/build-svt-av1@v2
       with:
         ffms2: "true"
         cmakeflags: "-DUSE_WEBM_IO=ON -DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreaded"
@@ -113,7 +112,7 @@ jobs:
     - run: git clone ${{ needs.tag.outputs.repo }} --branch ${{ needs.tag.outputs.version }} --single-branch .
       shell: pwsh
 
-    - uses: Akatmks/build-svt-av1@v1
+    - uses: Akatmks/build-svt-av1@v2
       with:
         ffms2: "true"
         cmakeflags: "-DUSE_WEBM_IO=ON -DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreaded"
@@ -132,7 +131,7 @@ jobs:
     steps:
     - run: git clone ${{ needs.tag.outputs.repo }} --branch ${{ needs.tag.outputs.version }} --single-branch .
 
-    - uses: Akatmks/build-svt-av1@v1
+    - uses: Akatmks/build-svt-av1@v2
       with:
         ffms2: "true"
         cmakeflags: "-DUSE_WEBM_IO=ON"
@@ -200,7 +199,7 @@ jobs:
     steps:
     - run: git clone ${{ needs.tag.outputs.repo }} --branch ${{ needs.tag.outputs.version }} --single-branch .
 
-    - uses: Akatmks/build-svt-av1@v1
+    - uses: Akatmks/build-svt-av1@v2
       with:
         ffms2: "true"
         cmakeflags: "-DUSE_WEBM_IO=ON"
@@ -218,29 +217,3 @@ jobs:
       with:
         tag_name: ${{ needs.tag.outputs.tag }}
         files: BuildAction/armv8.5-a+simd+crypto+apple-m3/static/ffms2/macOS_arm64_ffms2_armv8.5-a+simd+crypto+apple-m3.tar.xz
-
-
-  build-macos-x86-64:
-    needs: [tag, release]
-    runs-on: "macos-26-intel"
-    steps:
-    - run: git clone ${{ needs.tag.outputs.repo }} --branch ${{ needs.tag.outputs.version }} --single-branch .
-
-    - uses: Akatmks/build-svt-av1@v1
-      with:
-        ffms2: "true"
-        cmakeflags: "-DUSE_WEBM_IO=ON"
-
-    - run: ls BuildAction/skylake/static/base/SvtAv1EncApp
-    - run: cd BuildAction/skylake/static/base && tar cJf macOS_x86-64_skylake.tar.xz SvtAv1EncApp
-    - uses: softprops/action-gh-release@v3
-      with:
-        tag_name: ${{ needs.tag.outputs.tag }}
-        files: BuildAction/skylake/static/base/macOS_x86-64_skylake.tar.xz
-
-    - run: ls BuildAction/skylake/static/ffms2/SvtAv1EncApp
-    - run: cd BuildAction/skylake/static/ffms2 && tar cJf macOS_x86-64_ffms2_skylake.tar.xz SvtAv1EncApp
-    - uses: softprops/action-gh-release@v3
-      with:
-        tag_name: ${{ needs.tag.outputs.tag }}
-        files: BuildAction/skylake/static/ffms2/macOS_x86-64_ffms2_skylake.tar.xz
