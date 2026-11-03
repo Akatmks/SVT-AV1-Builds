@@ -13,7 +13,7 @@ jobs:
       name: ${{ steps.generate-name.outputs.name }}
       sha: ${{ steps.generate-sha.outputs.sha }}
     steps:
-    - run: git clone --depth 1 https://gitlab.com/AOMediaCodec/SVT-AV1.git .
+    - run: git clone --depth 1 https://github.com/AOMediaCodec/SVT-AV1.git .
     - id: generate-tag
       run: echo tag=pgo-build-$(git log -1 "--date=format:%F" "--format=%ad-%h") >> "$GITHUB_OUTPUT"
     - id: generate-name
@@ -75,7 +75,7 @@ jobs:
       run:
         shell: msys2 {0}
     steps:
-    - run: git clone https://gitlab.com/AOMediaCodec/SVT-AV1.git .
+    - run: git clone https://github.com/AOMediaCodec/SVT-AV1.git .
       shell: pwsh
 
     - uses: Akatmks/build-svt-av1@v2
@@ -120,7 +120,7 @@ jobs:
       run:
         shell: msys2 {0}
     steps:
-    - run: git clone https://gitlab.com/AOMediaCodec/SVT-AV1.git .
+    - run: git clone https://github.com/AOMediaCodec/SVT-AV1.git .
       shell: pwsh
 
     - uses: Akatmks/build-svt-av1@v2
@@ -140,7 +140,7 @@ jobs:
     if: ${{ needs.release.outputs.check-tag == 'failure' }}
     runs-on: "ubuntu-latest"
     steps:
-    - run: git clone https://gitlab.com/AOMediaCodec/SVT-AV1.git .
+    - run: git clone https://github.com/AOMediaCodec/SVT-AV1.git .
 
     - uses: Akatmks/build-svt-av1@v2
       with:
@@ -181,7 +181,7 @@ jobs:
     if: ${{ needs.release.outputs.check-tag == 'failure' }}
     runs-on: "macos-latest"
     steps:
-    - run: git clone https://gitlab.com/AOMediaCodec/SVT-AV1.git .
+    - run: git clone https://github.com/AOMediaCodec/SVT-AV1.git .
 
     - uses: Akatmks/build-svt-av1@v2
       with:
