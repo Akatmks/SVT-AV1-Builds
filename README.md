@@ -15,12 +15,12 @@ All of these forks focus on improving visual quality you can see with your eyes,
 * **5fish/SVT-AV1** is a SVT-AV1 variant that excels at 2D content, especially anime and some gaming footage.  
   * README: https://github.com/5fish/SVT-AV1#5fishsvt-av1  
   * Latest builds: https://github.com/5fish/SVT-AV1/releases  
-* **SVT-AV1-HDR** is a SVT-AV1 variant that excels at liveaction or other 3D content, as well as content with heavy film grain.  
-  * README: https://github.com/juliobbv-p/svt-av1-hdr#svt-av1-hdr  
-  * Latest builds: https://github.com/juliobbv-p/svt-av1-hdr/releases  
-* **SVT-AV1-Tritium** is a variant of SVT-AV1-HDR. It adds upon it and provides additional useful features from SVT-AV1-Essential.  
+* **SVT-AV1-Tritium** is a SVT-AV1 variant that excels at liveaction or other 3D content, as well as content with heavy film grain. It's a fork of -HDR that adds in everything from various -HDR forks, 5fish/, and -Essential.  
   * README: https://github.com/Uranite/svt-av1-tritium#svt-av1-tritium  
   * Latest builds: https://github.com/Uranite/svt-av1-tritium/releases  
+* **SVT-AV1-HDR** is a variant of SVT-AV1 which is the base for -Tritium.  
+  * README: https://github.com/juliobbv-p/svt-av1-hdr#svt-av1-hdr  
+  * Latest builds: https://github.com/juliobbv-p/svt-av1-hdr/releases  
   
 ## Builds provided in this repository
 
