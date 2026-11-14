@@ -18,7 +18,10 @@ All of these forks focus on improving visual quality you can see with your eyes,
 * **SVT-AV1-Tritium** is a SVT-AV1 variant that excels at liveaction or other 3D content, as well as content with heavy film grain. It's a fork of -HDR that adds in everything from various -HDR forks, 5fish/, and -Essential.  
   * README: https://github.com/Uranite/svt-av1-tritium#svt-av1-tritium  
   * Latest builds: https://github.com/Uranite/svt-av1-tritium/releases  
-* **SVT-AV1-HDR** is a variant of SVT-AV1 which is the base for -Tritium.  
+* **SVT-AV1-Skibidi** is a -Tritium variant with a better default for liveaction or other 3D content.  
+  * README: https://github.com/Uranite/svt-av1-skibidi#svt-av1-skibidi  
+  * Latest builds: https://github.com/Uranite/svt-av1-skibidi/releases  
+* **SVT-AV1-HDR** is a SVT-AV1 variant which is the base for -Tritium.  
   * README: https://github.com/juliobbv-p/svt-av1-hdr#svt-av1-hdr  
   * Latest builds: https://github.com/juliobbv-p/svt-av1-hdr/releases  
   
@@ -26,7 +29,7 @@ All of these forks focus on improving visual quality you can see with your eyes,
 
 Currently, this repository provides builds for latest SVT-AV1-Essential, builds for mainline SVT-AV1, and archival builds for older versions.  
 
-* **SVT-AV1-Essential** is a variant of SVT-AV1.  
+* **SVT-AV1-Essential** is a SVT-AV1 variant.  
   * README: https://github.com/nekotrix/SVT-AV1-Essential#svt-av1-essential
   * Latest testing builds: https://github.com/Uranite/SVT-AV1-Essential-Builds/releases
   * Latest builds: https://github.com/Akatmks/SVT-AV1-Builds/releases?q=SVT-AV1-Essential&expanded=true  
