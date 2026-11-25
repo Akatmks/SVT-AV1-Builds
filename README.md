@@ -31,8 +31,7 @@ Currently, this repository provides builds for latest SVT-AV1-Essential, builds 
 
 * **SVT-AV1-Essential** is a SVT-AV1 variant.  
   * README: https://github.com/nekotrix/SVT-AV1-Essential#svt-av1-essential
-  * Latest testing builds: https://github.com/Uranite/SVT-AV1-Essential-Builds/releases
-  * Latest builds: https://github.com/Akatmks/SVT-AV1-Builds/releases?q=SVT-AV1-Essential&expanded=true  
+  * Latest builds: https://github.com/Uranite/SVT-AV1-Essential-Builds/releases
 * Mainline **SVT-AV1**:  
   * README: https://gitlab.com/AOMediaCodec/SVT-AV1#scalable-video-technology-for-av1-svt-av1-encoder  
   * Latest release builds: https://github.com/Akatmks/SVT-AV1-Builds/releases?q=Mainline+SVT-AV1+Release&expanded=true  
